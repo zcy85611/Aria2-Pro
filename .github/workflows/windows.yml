@@ -48,7 +48,7 @@ jobs:
     - name: Compile
       run: |
         cd Aria2
-        timedatectl set-timezone "$TZ"
+        sudo timedatectl set-timezone "$TZ"
         sed -ie '14s/19.04/20.04/g' Dockerfile.mingw
         sed -ie '23s/#//g' Dockerfile.mingw
         sed -ie '29s/libgcrypt11/libssl/g' Dockerfile.mingw
