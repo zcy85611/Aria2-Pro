@@ -1,0 +1,49 @@
+#
+# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
+# https://github.com/P3TERX/Actions-OpenWrt
+# Description: Build OpenWrt using GitHub Actions
+#
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+
+env:
+  REPO_URL: https://github.com/aria2/aria2.git
+  REPO_BRANCH: master
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+        sudo mkdir -p /workdir
+        sudo chown $USER:$GROUPS /workdir
+        
+    - name: Clone source code
+      working-directory: /workdir
+      run: |
+        df -hT $PWD
+        git clone $REPO_URL -b $REPO_BRANCH Aria2
+        ln -sf /workdir/Aria2 $GITHUB_WORKSPACE/Aria2
+        
+    - name: Compile
+      run: |
+        cd Aria2
+        ./Dockerfile.mingw
+
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@main
+      with:
+        path: Aria2/src/aria2c/*
