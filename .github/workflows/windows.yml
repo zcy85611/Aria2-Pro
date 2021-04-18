@@ -43,14 +43,16 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH Aria2
-        cd Aria2
+        git clone $REPO_URL -b $REPO_BRANCH aria2
+        cp -r $GITHUB_WORKSPACE/patch /workdir/aria2
+        cd aria2
         git apply patch/*
-        ln -sf /workdir/Aria2 $GITHUB_WORKSPACE/Aria2
+        ln -sf /workdir/aria2 $GITHUB_WORKSPACE/aria2
         
     - name: Compile
       run: |
-        cd Aria2
+        cd aria2
+        sed -ie '19s/i686/x86_64/g' Dockerfile.mingw
         sed -ie '14s/19.04/20.04/g' Dockerfile.mingw
         sed -ie '23s/#//g' Dockerfile.mingw
         sed -ie '29s/libgcrypt11/libssl/g' Dockerfile.mingw
@@ -60,4 +62,4 @@ jobs:
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
       with:
-        path: Aria2/src/
+        path: $GITHUB_WORKSPACE/aria2/src/
