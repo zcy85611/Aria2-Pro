@@ -35,6 +35,7 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
         curl -fsSL https://get.docker.com -o get-docker.sh
+        apt install -y tzdata
         chmod +x get-docker.sh
         ./get-docker.sh
         
