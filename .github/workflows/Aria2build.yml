@@ -65,6 +65,8 @@ jobs:
         cd Aria2
         autoreconf -i
         ./mingw-config
+        make
+        make check
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
