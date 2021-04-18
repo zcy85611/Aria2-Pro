@@ -56,7 +56,7 @@ jobs:
         sed -ie '29s/libgcrypt11/libssl/g' Dockerfile.mingw
         cat ./Dockerfile.mingw > aria2-mingw
         sed -ie '19 a/ENV DEBIAN_FRONTEND noninteractive' aria2-mingw
-        docker build -t aria2-mingw
+        docker build -t Aria2/aria2-mingw
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
