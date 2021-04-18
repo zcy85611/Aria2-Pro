@@ -56,5 +56,6 @@ jobs:
         make
 
     - name: Upload firmware directory
-      uses: actions/upload-artifact@main
-      path: src/aria2c/*
+      uses: actions/upload-artifact@main'
+      with:
+        path: src/aria2c/*
