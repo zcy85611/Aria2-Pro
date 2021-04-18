@@ -98,4 +98,4 @@ jobs:
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
       with:
-        path: $GITHUB_WORKSPACE/src/aria2c/*
+        path: $GITHUB_WORKSPACE/Aria2/src/aria2c/*
