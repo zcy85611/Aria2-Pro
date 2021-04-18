@@ -47,7 +47,7 @@ jobs:
     - name: Compile
       run: |
         cd Aria2
-        sed -ie '14s/19.04/20.04.2/g' Dockerfile.mingw
+        sed -ie '14s/19.04/20.04/g' Dockerfile.mingw
         sed -ie '23s/#//g' Dockerfile.mingw
         docker build -t aria2-mingw - < ./Dockerfile.mingw
 
