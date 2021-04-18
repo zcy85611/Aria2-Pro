@@ -57,5 +57,4 @@ jobs:
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
-      name: xx${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
       path: ${{ env.FIRMWARE }}
