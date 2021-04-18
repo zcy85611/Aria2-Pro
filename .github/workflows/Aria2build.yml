@@ -8,8 +8,6 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build Aria2
-
 on:
   repository_dispatch:
   workflow_dispatch:
