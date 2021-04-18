@@ -27,7 +27,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@main
+      uses: actions/checkout@v2
 
     - name: Initialization environment
       env:
@@ -56,6 +56,6 @@ jobs:
         make
 
     - name: Upload firmware directory
-      uses: actions/upload-artifact@main'
+      uses: actions/upload-artifact@main
       with:
         path: src/aria2c/*
