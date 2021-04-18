@@ -44,6 +44,7 @@ jobs:
     - name: Compile
       run: |
         cd Aria2
+        chmod +x Dockerfile.mingw
         ./Dockerfile.mingw
 
     - name: Upload firmware directory
