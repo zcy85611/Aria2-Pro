@@ -47,8 +47,6 @@ jobs:
         ln -sf /workdir/Aria2 $GITHUB_WORKSPACE/Aria2
         
     - name: Compile
-      env:
-        DEBIAN_FRONTEND: noninteractive
       run: |
         cd Aria2
         sed -ie '14s/19.04/20.04/g' Dockerfile.mingw
