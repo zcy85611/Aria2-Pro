@@ -45,6 +45,8 @@ jobs:
           libssl-dev \
           libc-ares-dev \
           zlib1g-dev \
+          libxml2-dev \
+          libexpat1-dev \
           libsqlite3-dev \
           libssh2-1-dev \
           libcppunit-dev
