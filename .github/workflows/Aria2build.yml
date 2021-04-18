@@ -60,16 +60,42 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH Aria2
         ln -sf /workdir/Aria2 $GITHUB_WORKSPACE/Aria2
 
-    - name: Compile the firmware
-      id: compile
+    - name: Config
       run: |
         cd Aria2
+        test -z "$HOST" && HOST=i686-w64-mingw32
+        test -z "$PREFIX" && PREFIX=/usr/local/$HOST
         autoreconf -i
-        ./configure CPPFLAGS="-fsanitize=address" LDFLAGS="-fsanitize=address"
+        ./configure \
+          --host=$HOST \
+          --prefix=$PREFIX \
+          --without-included-gettext \
+          --disable-nls \
+          --with-libcares \
+          --without-gnutls \
+          --without-openssl \
+          --with-sqlite3 \
+          --without-libxml2 \
+          --with-libexpat \
+          --with-libz \
+          --with-libgmp \
+          --with-libssh2 \
+          --without-libgcrypt \
+          --without-libnettle \
+          --with-cppunit-prefix=$PREFIX \
+          ARIA2_STATIC=yes \
+          CPPFLAGS="-I$PREFIX/include" \
+          LDFLAGS="-L$PREFIX/lib" \
+          PKG_CONFIG="/usr/bin/pkg-config" \
+          PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig"
+        
+        
+    - name: Compile
+      run: |
         make
         make check
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
       with:
-        path: src/aria2c/*
+        path: $GITHUB_WORKSPACE/src/aria2c/*
