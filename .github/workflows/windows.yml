@@ -33,6 +33,9 @@ jobs:
       run: |
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+        curl -fsSL https://get.docker.com -o get-docker.sh
+        chmod +x get-docker.sh
+        ./get-docker.sh
         
     - name: Clone source code
       working-directory: /workdir
@@ -44,8 +47,7 @@ jobs:
     - name: Compile
       run: |
         cd Aria2
-        chmod +x Dockerfile.mingw
-        ./Dockerfile.mingw
+        docker build -t aria2-mingw - < ./Dockerfile.mingw
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
