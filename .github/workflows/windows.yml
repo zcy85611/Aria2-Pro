@@ -47,7 +47,7 @@ jobs:
     - name: Compile
       run: |
         cd Aria2
-        RUN sed -ie 's/archive\.ubuntu/jp.archive.ubuntu/g' /etc/apt/sources.list
+        sed -ie 's/archive\.ubuntu/jp.archive.ubuntu/g' /etc/apt/sources.list
         docker build -t aria2-mingw - < ./Dockerfile.mingw
 
     - name: Upload firmware directory
