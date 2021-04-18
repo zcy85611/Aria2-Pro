@@ -63,6 +63,7 @@ jobs:
     - name: Compile
       run: |
         cd Aria2
+        autoreconf -i
         ./mingw-config
 
     - name: Upload firmware directory
