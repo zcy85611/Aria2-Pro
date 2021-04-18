@@ -36,7 +36,7 @@ jobs:
         sudo chown $USER:$GROUPS /workdir
         curl -fsSL https://get.docker.com -o get-docker.sh
         # sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        sudo apt install -y tzdata
+        sudo apt-get install dialog
         chmod +x get-docker.sh
         ./get-docker.sh
         
