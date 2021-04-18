@@ -20,10 +20,11 @@ on:
 env:
   REPO_URL: https://github.com/aria2/aria2.git
   REPO_BRANCH: master
+  TZ: Asia/Shanghai
   
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
@@ -47,9 +48,10 @@ jobs:
     - name: Compile
       run: |
         cd Aria2
-        # sed -ie '14s/19.04/20.04/g' Dockerfile.mingw
-        # sed -ie '23s/#//g' Dockerfile.mingw
-        # sed -ie '29s/libgcrypt11/libssl/g' Dockerfile.mingw
+        timedatectl set-timezone "$TZ"
+        sed -ie '14s/19.04/20.04/g' Dockerfile.mingw
+        sed -ie '23s/#//g' Dockerfile.mingw
+        sed -ie '29s/libgcrypt11/libssl/g' Dockerfile.mingw
         docker build -t aria2-mingw - < ./Dockerfile.mingw
 
     - name: Upload firmware directory
