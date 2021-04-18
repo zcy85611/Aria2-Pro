@@ -62,9 +62,10 @@ jobs:
         
     - name: Compile
       run: |
+        cd Aria2
         ./mingw-config
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
       with:
-        path: $GITHUB_WORKSPACE/Aria2/src/aria2c/*
+        path: Aria2/src/aria2c/*
