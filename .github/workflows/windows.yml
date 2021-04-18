@@ -46,6 +46,8 @@ jobs:
         ln -sf /workdir/Aria2 $GITHUB_WORKSPACE/Aria2
         
     - name: Compile
+      env:
+        DEBIAN_FRONTEND: noninteractive
       run: |
         cd Aria2
         sudo timedatectl set-timezone "$TZ"
