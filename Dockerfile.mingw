@@ -17,6 +17,7 @@ MAINTAINER Tatsuhiro Tsujikawa
 
 # Change HOST to x86_64-w64-mingw32 to build 64-bit binary
 ENV HOST x86_64-w64-mingw32
+ENV DEBIAN_FRONTEND noninteractive
 
 # It would be better to use nearest ubuntu archive mirror for faster
 # downloads.
