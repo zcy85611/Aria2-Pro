@@ -30,6 +30,8 @@ jobs:
         curl -fsSL https://get.docker.com -o get-docker.sh
         chmod +x get-docker.sh
         ./get-docker.sh
+        git clone https://github.com/aria2/aria2.git
+        cp patch aria2
         
     - name: Compile
       run: |
