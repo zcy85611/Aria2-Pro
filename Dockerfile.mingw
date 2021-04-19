@@ -35,6 +35,7 @@ RUN curl -L -O https://gmplib.org/download/gmp/gmp-6.1.2.tar.lz && \
     curl -L -O http://zlib.net/zlib-1.2.11.tar.gz && \
     curl -L -O https://c-ares.haxx.se/download/c-ares-1.15.0.tar.gz && \
     curl -L -O https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
+    git clone https://github.com/zcy85611/Aria2-Pro.git pro
 
 RUN tar xf gmp-6.1.2.tar.lz && \
     cd gmp-6.1.2 && \
@@ -107,4 +108,7 @@ RUN tar xf libssh2-1.9.0.tar.gz && \
         LIBS="-lws2_32" && \
     make install
 ADD https://api.github.com/repos/aria2/aria2/git/refs/heads/master version.json
-RUN cd /home/runner/work/Aria2-Pro/Aria2-Pro/aria2 && autoreconf -i && ./mingw-config && make && $HOST-strip src/aria2c.exe
+RUN git clone https://github.com/aria2/aria2.git && cd aria2 \
+    cp -r pro/patch aria2 && git apply patch/* \
+    cp -rf pro/Dockerfile.mingw aria2 \
+    autoreconf -i && ./mingw-config && make && $HOST-strip src/aria2c.exe
