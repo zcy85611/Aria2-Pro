@@ -34,14 +34,15 @@ jobs:
         cp -r patch aria2
         cd aria2
         git apply patch/*
+        cp -rf Dockerfile.mingw aria2/Dockerfile.mingw
         
     - name: Compile
       run: |
-        sed -ie '19s/i686/x86_64/g' Dockerfile.mingw
-        sed -ie '14s/19.04/20.04/g' Dockerfile.mingw
-        sed -ie '23s/#//g' Dockerfile.mingw
-        sed -ie '29s/libgcrypt11/libssl/g' Dockerfile.mingw
-        sed -ie '19 aENV DEBIAN_FRONTEND noninteractive' Dockerfile.mingw
+        #sed -ie '19s/i686/x86_64/g' Dockerfile.mingw
+        #sed -ie '14s/19.04/20.04/g' Dockerfile.mingw
+        #sed -ie '23s/#//g' Dockerfile.mingw
+        #sed -ie '29s/libgcrypt11/libssl/g' Dockerfile.mingw
+        #sed -ie '19 aENV DEBIAN_FRONTEND noninteractive' Dockerfile.mingw
         sudo docker build -t aria2-mingw - < Dockerfile.mingw
         id=$(sudo docker create aria2-mingw)
         sudo docker cp $id:/aria2/src/aria2c.exe /home/runner/work/Aria2-Pro/Aria2-Pro/aria2c.exe
