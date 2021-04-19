@@ -33,9 +33,7 @@ jobs:
         git clone https://github.com/aria2/aria2.git
         cp -rf Dockerfile.mingw aria2/Dockerfile.mingw
         cp -r patch aria2
-        ls
         cd aria2
-        pwd
         git apply patch/*
         
     - name: Compile
@@ -45,5 +43,12 @@ jobs:
         #sed -ie '23s/#//g' Dockerfile.mingw
         #sed -ie '29s/libgcrypt11/libssl/g' Dockerfile.mingw
         #sed -ie '19 aENV DEBIAN_FRONTEND noninteractive' Dockerfile.mingw
-        pwd
+        sudo docker build -t aria2-mingw - < Dockerfile.mingw
+        id=$(sudo docker create aria2-mingw)
+        sudo docker cp $id:/aria2/src/aria2c.exe /home/runner/work/Aria2-Pro/Aria2-Pro/aria2c.exe
+        sudo docker rm -v $id
 
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@main
+      with:
+        path: /home/runner/work/Aria2-Pro/Aria2-Pro/aria2c.exe
