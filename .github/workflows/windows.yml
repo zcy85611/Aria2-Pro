@@ -33,40 +33,18 @@ jobs:
     - name: Initialization environment
       run: |
         echo $PWD
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
+        # sudo apt-get install dialog
         curl -fsSL https://get.docker.com -o get-docker.sh
-        sudo apt-get install dialog
         chmod +x get-docker.sh
         ./get-docker.sh
+        ls
         
     - name: Clone source code
-      working-directory: /workdir
       run: |
         echo $PWD
-        df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH aria2
-        cp -r $GITHUB_WORKSPACE/patch /workdir/aria2
+        git clone $REPO_URL -b $REPO_BRANCH
+        cp -r patch /aria2
         cd aria2
         echo $PWD
+        ls
         git apply patch/*
-        ln -sf /workdir/aria2 $GITHUB_WORKSPACE/aria2
-        
-    - name: Compile
-      run: |
-        echo $PWD
-        ls
-        cd aria2
-        echo $PWD
-        ls
-        sed -ie '19s/i686/x86_64/g' Dockerfile.mingw
-        sed -ie '14s/19.04/20.04/g' Dockerfile.mingw
-        sed -ie '23s/#//g' Dockerfile.mingw
-        sed -ie '29s/libgcrypt11/libssl/g' Dockerfile.mingw
-        sed -ie '19 aENV DEBIAN_FRONTEND noninteractive' Dockerfile.mingw
-        sudo docker build -t aria2-mingw - < Dockerfile.mingw
-
-    - name: Upload firmware directory
-      uses: actions/upload-artifact@main
-      with:
-        path: /aria2
