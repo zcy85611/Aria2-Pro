@@ -34,7 +34,7 @@ RUN curl -L -O https://gmplib.org/download/gmp/gmp-6.1.2.tar.lz && \
     curl -L -O https://www.sqlite.org/2019/sqlite-autoconf-3290000.tar.gz && \
     curl -L -O http://zlib.net/zlib-1.2.11.tar.gz && \
     curl -L -O https://c-ares.haxx.se/download/c-ares-1.15.0.tar.gz && \
-    curl -L -O https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
+    curl -L -O https://www.libssh2.org/download/libssh2-1.9.0.tar.gz \
     git clone https://github.com/zcy85611/Aria2-Pro.git pro
 
 RUN tar xf gmp-6.1.2.tar.lz && \
