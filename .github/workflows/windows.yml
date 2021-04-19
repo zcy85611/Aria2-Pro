@@ -33,7 +33,6 @@ jobs:
         
     - name: Compile
       run: |
-        cd aria2
         sed -ie '19s/i686/x86_64/g' Dockerfile.mingw
         sed -ie '14s/19.04/20.04/g' Dockerfile.mingw
         sed -ie '23s/#//g' Dockerfile.mingw
