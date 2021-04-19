@@ -31,10 +31,10 @@ jobs:
         chmod +x get-docker.sh
         ./get-docker.sh
         git clone https://github.com/aria2/aria2.git
+        cp -rf Dockerfile.mingw aria2/Dockerfile.mingw
         cp -r patch aria2
         cd aria2
         git apply patch/*
-        cp -rf Dockerfile.mingw aria2/Dockerfile.mingw
         
     - name: Compile
       run: |
