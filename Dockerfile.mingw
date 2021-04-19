@@ -109,6 +109,5 @@ RUN tar xf libssh2-1.9.0.tar.gz && \
     make install
 ADD https://api.github.com/repos/aria2/aria2/git/refs/heads/master version.json
 RUN git clone https://github.com/aria2/aria2.git && cd aria2 && \
-    cp -r pro/patch aria2 && git apply patch/* && \
-    cp -rf pro/Dockerfile.mingw aria2 && \
+    cp -r /pro/patch /aria2 && git apply patch/* && \
     autoreconf -i && ./mingw-config && make && $HOST-strip src/aria2c.exe
