@@ -32,6 +32,7 @@ jobs:
       
     - name: Initialization environment
       run: |
+        echo $PWD
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
         curl -fsSL https://get.docker.com -o get-docker.sh
@@ -42,16 +43,22 @@ jobs:
     - name: Clone source code
       working-directory: /workdir
       run: |
+        echo $PWD
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH aria2
         cp -r $GITHUB_WORKSPACE/patch /workdir/aria2
         cd aria2
+        echo $PWD
         git apply patch/*
         ln -sf /workdir/aria2 $GITHUB_WORKSPACE/aria2
         
     - name: Compile
       run: |
+        echo $PWD
+        ls
         cd aria2
+        echo $PWD
+        ls
         sed -ie '19s/i686/x86_64/g' Dockerfile.mingw
         sed -ie '14s/19.04/20.04/g' Dockerfile.mingw
         sed -ie '23s/#//g' Dockerfile.mingw
