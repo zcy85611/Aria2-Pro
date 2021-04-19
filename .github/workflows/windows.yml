@@ -43,7 +43,8 @@ jobs:
       run: |
         echo $PWD
         git clone $REPO_URL -b $REPO_BRANCH
-        cp -r patch /aria2
+        ls
+        cp -r patch aria2
         cd aria2
         echo $PWD
         ls
