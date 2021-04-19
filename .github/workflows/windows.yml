@@ -35,3 +35,8 @@ jobs:
         pwd
         cd /
         ls
+        cd /home
+        ls
+        cd /etc
+        ls
+        
