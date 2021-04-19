@@ -107,4 +107,4 @@ RUN tar xf libssh2-1.9.0.tar.gz && \
         LIBS="-lws2_32" && \
     make install
 ADD https://api.github.com/repos/aria2/aria2/git/refs/heads/master version.json
-RUN cd aria2 && autoreconf -i && ./mingw-config && make && $HOST-strip src/aria2c.exe
+RUN cd /home/runner/work/Aria2-Pro/Aria2-Pro/aria2 && autoreconf -i && ./mingw-config && make && $HOST-strip src/aria2c.exe
