@@ -1,3 +1,5 @@
+name: Build Aria2 Windows
+
 on:
   repository_dispatch:
   workflow_dispatch:
