@@ -37,7 +37,7 @@ RUN curl -L -O https://gmplib.org/download/gmp/gmp-6.2.1.tar.lz && \
     curl -L -O http://zlib.net/zlib-1.2.11.tar.gz && \
     curl -L -O https://c-ares.haxx.se/download/c-ares-1.17.2.tar.gz && \
     curl -L -O https://www.libssh2.org/download/libssh2-1.9.0.tar.gz && \
-    curl -L -O https://github.com/libssh2/libssh2/commit/ba149e804ef653cc05ed9803dfc94519ce9328f7.patch
+    curl -L -O https://github.com/libssh2/libssh2/commit/ba149e804ef653cc05ed9803dfc94519ce9328f7.patch && \
     git clone https://github.com/zcy85611/Aria2-Pro.git pro
 
 RUN tar xf gmp-6.2.1.tar.lz && \
